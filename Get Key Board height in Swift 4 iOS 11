@@ -1,0 +1,24 @@
+//Add Keyboard observer in viewDidLoad() method
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShown), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+
+//add below method to same class
+
+@objc func keyboardShown(notification: NSNotification) {
+        print("keyboardShown called")
+        
+        let info  = notification.userInfo!
+        let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]! as AnyObject
+        
+        let rawFrame = value.cgRectValue
+        let keyboardFrame = view.convert(rawFrame!, from: nil)
+        Let keyboardHeight = keyboardFrame.size.height
+        
+        print("keyboardFrame: \(keyboardFrame)")
+    }
+
+
+——————————
+
+O/P Sample :
+
+keyboardFrame: (0.0, 465.0, 414.0, 271.0)
